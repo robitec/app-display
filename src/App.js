@@ -14,7 +14,6 @@ function App() {
       socket.emit('refresh');
     }, REFRESH_INTERVAL);
     socket.on('refresh', (data) => {
-      console.log(data);
       setData(data);
     });
   }, [socket]);
@@ -23,7 +22,6 @@ function App() {
     <Switch>
       <Route exact path="/">
         {data.elements.map((el, index) => (
-          //el: {"value":"","name":"Sensor Distance","com":"COM8","online":false}}
           <Display
             key={el.name + '-' + index}
             id={index}

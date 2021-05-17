@@ -29,19 +29,26 @@
   align-items: center;
 }
 
-.repetidor-display--weight {
+.repetidor-display--value {
   display: flex;
   justify-content: flex-end;
   align-items: center;
   flex: 2;
 }
 
-.repetidor-display--weight > span {
+.repetidor-display--value > span {
   font-size: 5rem;
   line-height: 5rem;
-  color: var(--orange);
   font-weight: 800;
   white-space: nowrap;
-
+  margin-right: 2rem;
   text-shadow: 0px 3px 6px rgba(0, 0, 0, 0.6);
 }
+
+.error-value {
+  color: var(--error);
+}
+.success-value {
+  color: var(--orange);
+}
+

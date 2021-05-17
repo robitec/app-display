@@ -11,13 +11,13 @@ const Display = ({
   ...props
 }) => {
   return (
-    <div className="repetidor-display--container bordered-section">
+    <div className={"repetidor-display--container bordered-section" + (status ? "" : " error-section")}>
       <div className="repetidor-display--title">
         <span className="display-title">{name}</span>
       </div>
       <div className="repetidor-display--content">
-        <div className="repetidor-display--weight">
-          <span>{value} {units}</span>
+        <div className="repetidor-display--value">
+          <span className={(status ? "success-value" : "error-value")}>{value} {units}</span>
         </div>
       </div>
     </div>
