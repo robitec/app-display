@@ -52,3 +52,20 @@
   color: var(--orange);
 }
 
+.dot {
+  height: 40px;
+  width: 40px;
+
+  border-radius: 50%;
+  display: inline-block;
+  margin-right: 1%;
+  margin-top: 1%;
+}
+
+.dot-error {
+  background-color: var(--error);
+}
+
+.dot-success {
+  background-color: var(--success);
+}

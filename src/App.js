@@ -29,6 +29,7 @@ function App() {
             value ={el.value}
             units={el.units}
             status={el.online}
+            dotStatus={el.status}
           />
         ))}
       </Route>
