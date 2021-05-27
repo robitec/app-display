@@ -3,8 +3,8 @@ import socketIOClient from 'socket.io-client';
 
 const SocketContext = createContext({ socket: null });
 
-const IP = process.env.SOCKET_IP || "192.168.5.139"
-const PORT = process.env.SOCKET_PORT || "3001"
+const IP = process.env.SOCKET_IP || window.location.host
+const PORT = process.env.SOCKET_PORT || window.location.port
 
 console.log(`Socket: ${IP}:${PORT}`);
 
