@@ -19,18 +19,38 @@ See the section about [deployment](https://facebook.github.io/create-react-app/d
 
 ![screenshot](https://user-images.githubusercontent.com/14354821/118971890-3a44df80-b970-11eb-8f6a-304269c9024b.png)
 
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
 ### Deployment
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
 
-### `yarn build` fails to minify
+**Rotate Display**
+Preferences Config or;
+```
+lcd_rotate=2
+display_rotate=2
+```
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+**Disable Cursor** `/etc/lightdm/lightdm.conf`
+```
+xserver-command = X -nocursor
+```
+
+### Steps to create the pm2 service
+
+
+Script: `app.sh `
+
+```
+#!/usr/bin/bash
+
+chromium-browser --kiosk --enable-auto-reload --incognito --app="http://SERVER_IP:PORT"
+```
+
+
+```
+pm2 start app.sh
+pm2 save
+pm2 startup
+sudo env PATH=$PATH:/usr/bin /usr/local/lib/node_modules/pm2/bin/pm2 startup systemd -u pi --hp /home/pi
+pm2 save
+
+```

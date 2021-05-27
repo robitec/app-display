@@ -1,12 +1,10 @@
-FROM node:14
+# Stage 1 - build react app first
+FROM node:14 as build
 
 RUN apt-get update -qq && apt-get install -y yarn
 RUN npm i -g @vercel/ncc
 
 WORKDIR /display
-
-ENV SOCKET_PORT=172.24.78.6
-ENV SOCKET_IP=3001
 
 COPY package.json .
 COPY yarn.lock .
@@ -16,8 +14,16 @@ COPY . .
 
 RUN yarn build
 
-RUN rm -rf src
 
-EXPOSE 3001
+# Stage 2 - build the final image and copy the react build files
+FROM nginx:1.17.8-alpine
 
-CMD ["yarn", "eject"]
+COPY --from=build /app/build /usr/share/nginx/html
+
+RUN rm /etc/nginx/conf.d/default.conf
+
+COPY nginx.conf /etc/nginx/conf.d
+
+EXPOSE 80
+
+CMD ["nginx", "-g", "daemon off;"]
