@@ -37,20 +37,24 @@ xserver-command = X -nocursor
 ### Steps to create the pm2 service
 
 
-Script: `app.sh `
+Script: `/usr/bin/app.sh `
 
 ```
 #!/usr/bin/bash
 
 chromium-browser --kiosk --enable-auto-reload --incognito --app="http://SERVER_IP:PORT"
 ```
+- chmod +x app.sh
 
-
+Service: `/lib/systemd/system/appdisplay.service`
 ```
-pm2 start app.sh
-pm2 save
-pm2 startup
-sudo env PATH=$PATH:/usr/bin /usr/local/lib/node_modules/pm2/bin/pm2 startup systemd -u pi --hp /home/pi
-pm2 save
+[Unit]
+Description=Open App Display
+
+[Service]
+ExecStart=/usr/bin/app.sh
+
+[Install]
+WantedBy=multi-user.target
 
 ```

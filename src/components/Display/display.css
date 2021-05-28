@@ -1,8 +1,8 @@
 .repetidor-display--container:first-of-type {
-  margin-bottom: 1rem;
+  margin-bottom: 0.2rem;
 }
 .repetidor-display--container:last-of-type {
-  margin-top: 1rem;
+  margin-top: 0.2rem;
 }
 
 .repetidor-display--title {
