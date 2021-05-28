@@ -15,7 +15,7 @@ const Display = ({
   const [dotClassName, setdotClassName] = useState('');
 
   useEffect(() => {
-    if(id == 2) {
+    if(id === 2) {
       if (dotStatus)
         setdotClassName('dot-success');
       else

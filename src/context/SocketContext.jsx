@@ -3,15 +3,14 @@ import socketIOClient from 'socket.io-client';
 
 const SocketContext = createContext({ socket: null });
 
-const IP = process.env.SOCKET_IP || window.location.host
-const PORT = process.env.SOCKET_PORT || window.location.port
+// const IP = process.env.SOCKET_IP || window.location.host
+// const PORT = process.env.SOCKET_PORT || window.location.port
+const socketUrl = 'http://localhost:3001';
 
-console.log(`Socket: ${IP}:${PORT}`);
+console.log(`Socket: ${socketUrl}`);
 
 const SocketProvider = ({ children }) => {
-  const socket = socketIOClient(
-    `${window.location.protocol}//${IP}:${PORT}`
-  );
+  const socket = socketIOClient(socketUrl);
   return <SocketContext.Provider value={{ socket }}>{children}</SocketContext.Provider>;
 };
 
