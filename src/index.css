@@ -16,8 +16,8 @@ body {
 
   height: 100%;
   width: 100%;
-  min-height: 100vh;
-  min-width: 100vw;
+  min-height: 99vh;
+  min-width: 99vw;
   display: flex;
 }
 

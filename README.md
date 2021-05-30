@@ -34,10 +34,10 @@ display_rotate=2
 xserver-command = X -nocursor
 ```
 
-### Steps to create the pm2 service
+### Steps to create system user service
 
 
-Script: `/usr/bin/app.sh `
+Script: `/home/pi/bmauri/app.sh`
 
 ```
 #!/usr/bin/bash
@@ -46,15 +46,23 @@ chromium-browser --kiosk --enable-auto-reload --incognito --app="http://SERVER_I
 ```
 - chmod +x app.sh
 
-Service: `/lib/systemd/system/appdisplay.service`
+User Service: `.config/systemd/user/appdisplay.service`
 ```
 [Unit]
 Description=Open App Display
 
 [Service]
-ExecStart=/usr/bin/app.sh
+ExecStart=/home/pi/bmauri/app.sh
 
 [Install]
 WantedBy=multi-user.target
 
+```
+Enable Service
+
+```
+systemctl --user daemon-reload
+systemctl --user status appdisplay.service
+systemctl --user enable appdisplay.service
+systemctl --user start appdisplay.service
 ```
