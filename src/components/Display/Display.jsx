@@ -9,6 +9,7 @@ const Display = ({
   status = false,
   units = "",
   dotStatus = false,
+  action = () => { console.log("Action not set! ")},
   ...props
 }) => {
 
@@ -25,10 +26,12 @@ const Display = ({
     }
   });
   return (
-    <div className={"repetidor-display--container bordered-section" + (status ? "" : " error-section")}>
+    <div className={"repetidor-display--container bordered-section" + (status ? "" : " error-section")}
+      onClick={action}
+      >
       <div className="repetidor-display--title">
         <span className="display-title">{name}</span>
-        <span class={`dot ${dotClassName}`}></span>
+        <span className={`dot ${dotClassName}`}></span>
       </div>
       <div className="repetidor-display--content">
         <div className="repetidor-display--value">
