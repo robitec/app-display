@@ -21,6 +21,23 @@ See the section about [deployment](https://facebook.github.io/create-react-app/d
 
 ### Deployment
 
+**A06 Display**
+`/boot/config.txt`
+```
+[all]
+#dtoverlay=vc4-fkms-v3d
+hdmi_force_hotplug=1
+dtparam=i2c_arm=on
+dtparam=spi=on
+enable_uart=1
+display_rotate=0
+# max_usb_current=1
+config_hdmi_boost=7
+hdmi_group=2
+hdmi_mode=87
+hdmi_drive=1
+hdmi_cvt 1024 600 60 6 0 0 0
+```
 
 **Rotate Display**
 Preferences Config or;
@@ -29,28 +46,34 @@ lcd_rotate=2
 display_rotate=2
 ```
 
-**Disable Cursor** `/etc/lightdm/lightdm.conf`
+**Hide Cursor** `/etc/lightdm/lightdm.conf`
 ```
 xserver-command = X -nocursor
 ```
 
-### Steps to create the pm2 service
+### Steps to autostart chromium
 
 
-Script: `app.sh `
+Script: `/home/pi/bmauri/screen/start.sh`
 
 ```
 #!/usr/bin/bash
 
+sleep 15
 chromium-browser --kiosk --enable-auto-reload --incognito --app="http://SERVER_IP:PORT"
 ```
 
+**Exec script**
 
+`chmod +x /home/pi/bmauri/screen/start.sh`
+
+
+Config: `.config/lxsession/LXDE-pi/autostart`
 ```
-pm2 start app.sh
-pm2 save
-pm2 startup
-sudo env PATH=$PATH:/usr/bin /usr/local/lib/node_modules/pm2/bin/pm2 startup systemd -u pi --hp /home/pi
-pm2 save
+@lxpanel --profile LXDE-pi
+@pcmanfm --desktop --profile LXDE-pi
+# @xscreensaver -no-splash
+@point-rpi
 
+/home/pi/bmauri/screen/start.sh
 ```
