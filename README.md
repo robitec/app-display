@@ -1,6 +1,6 @@
 # Display App
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+**[Deprecated]** => New Version: [Display App V2](https://github.com/robitec/app-display-v2)
 
 ## Available Scripts
 
